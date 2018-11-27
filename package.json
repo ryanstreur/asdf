@@ -1,0 +1,14 @@
+{
+  "name": "asdf",
+  "version": "0.0.0",
+  "description": "ergonomic cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Ryan Streur",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}
