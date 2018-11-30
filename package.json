@@ -4,7 +4,7 @@
   "description": "ergonomic cli",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha"
   },
   "bin": {
     "asdf": "./index.js"
@@ -16,5 +16,8 @@
     "html-metadata": "^1.7.0",
     "moment": "^2.22.2",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
