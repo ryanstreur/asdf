@@ -8,9 +8,10 @@ const htmlMetadata = require('html-metadata');
 
 program
   .version('0.0.0')
-  .command('log <string>')
+  .command('log <word> [otherWords...]')
   .alias('l')
-  .action(function (string) {
+  .action(function (word, otherWords) {
+    const string = word + ' ' + otherWords.join(' ');
     fs.appendFile('C:/Users/ryan.streur/Dropbox/notes/log.org', getLogString(string), function (err, res) {
       if (err && err.code === 'ENOENT') {
         fs.writeFile('~/Dropbox/notes/log.org', string, function (err) {
