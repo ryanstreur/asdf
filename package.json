@@ -6,9 +6,15 @@
   "scripts": {
     "test": "test"
   },
+  "bin": {
+    "asdf": "./index.js"
+  },
   "author": "Ryan Streur",
   "license": "GPL-3.0",
   "dependencies": {
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "html-metadata": "^1.7.0",
+    "moment": "^2.22.2",
+    "request": "^2.88.0"
   }
 }
