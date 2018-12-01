@@ -1,19 +1,25 @@
+const fs = require('fs');
+const config = require('../config');
+const getUserHome = require('../process-util').getUserHome;
+const moment = require('moment');
 
-
-export function log (word, otherWords, cmd) {
+module.exports.log = function log (word, otherWords, cmd) {
+  config.getSetting('log', config => {
     const heading = word + ' ' + otherWords.join(' ');
-    const body = cmd.body ? cmd.body : '';
-    const stringToAppend = getLogString(heading, body);
-    fs.appendFile(defaultConfig.log.filePath, stringToAppend, function (err, res) {
-      if (err && err.code === 'ENOENT') {
-        fs.writeFile('~/Dropbox/notes/log.org', stringToAppend, function (err) {
-          console.log(err);
-        });
-        console.log('file created: ~/Dropbox/notes/log.org');
-      } else if (err) {
+    const stringToAppend = getLogString(heading, cmd.body);
+    const filePath = config.filePath[0] === '~' ? getUserHome() + config.filePath.slice(1) : config.filePath;
+    fs.appendFile(filePath, stringToAppend, (err, res) => {
+      if (err) {
         console.log(err);
       } else {
-        console.log('logged msg: ', stringToAppend);
+        console.log('logged msg: ', stringToAppend, '\n to file: ', config.filePath);
       }
     });
-  }
+  });
+}
+
+function getLogString(heading, body) {
+  const timestamp = moment().format('YYYY-MM-DD ddd kk:mm');
+  const outString = `* ${heading}\n  <${timestamp}>\n`;
+  return body ? outString + '  ' + body + '\n' : outString;
+}

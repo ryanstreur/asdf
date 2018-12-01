@@ -2,11 +2,9 @@
 
 const program = require('commander');
 const fs = require('fs');
-const moment = require('moment');
-const request = require('request');
 const htmlMetadata = require('html-metadata');
 
-const log = require('./cmds/log.command');
+const log = require('./cmds/log.command').log;
 
 program
   .version('0.0.0')
@@ -28,8 +26,3 @@ program.command('url <url>')
   });
 
 program.parse(process.argv);
-
-function getLogString(heading, body) {
-  const timestamp = moment().format('YYYY-MM-DD ddd kk:mm');
-  return `* ${heading}\n  <${timestamp}>\n  ${body}\n`;
-}

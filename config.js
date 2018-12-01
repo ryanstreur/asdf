@@ -1,4 +1,6 @@
+const fs = require('fs');
 const defaultConfigFile = require('./.asdf.default.json');
+const getUserHome = require('./process-util').getUserHome;
 
 module.exports = {
   getSetting:  getSetting,
@@ -6,7 +8,9 @@ module.exports = {
 }
 function getSetting (settingName, cb) {
   getUserConfig(userConfig => {
-    cb(replaceEmptySettingsWithDefaults(userConfig, defaultConfigFile));
+    cb(
+      replaceEmptySettingsWithDefaults(
+        userConfig, defaultConfigFile)[settingName]);
   });
 }
 
@@ -25,13 +29,9 @@ function replaceEmptySettingsWithDefaults (userConfig, defaultConfig) {
 }
 
 function getUserConfig (cb) {
-  const filePath = getUserHome();
+  const filePath = `${getUserHome()}/.asdf.json`
   fs.readFile(filePath, (err, data) => {
     if (err) console.log(err);
     else cb(JSON.parse(data));
   });
-}
-
-function getUserHome () {
-  return process.env[(process.platform.includes('win') ? 'USERPROFILE' : 'HOME')];
 }

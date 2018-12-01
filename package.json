@@ -4,7 +4,8 @@
   "description": "ergonomic cli",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha *test.js"
+    "test": "nyc mocha *test.js",
+    "testwatch": "mocha *test.js --watch"
   },
   "bin": {
     "asdf": "./index.js"
