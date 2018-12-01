@@ -6,28 +6,14 @@ const moment = require('moment');
 const request = require('request');
 const htmlMetadata = require('html-metadata');
 
+const log = require('./cmds/log.command');
+
 program
   .version('0.0.0')
   .command('log <word> [otherWords...]')
   .alias('l')
   .option('-b --body [body]', 'Body text for entry')
-  .action(function (word, otherWords, cmd) {
-    const heading = word + ' ' + otherWords.join(' ');
-    const body = cmd.body ? cmd.body : '';
-    const stringToAppend = getLogString(heading, body);
-    fs.appendFile('C:/Users/ryan.streur/Dropbox/notes/log.org', stringToAppend, function (err, res) {
-      if (err && err.code === 'ENOENT') {
-        fs.writeFile('~/Dropbox/notes/log.org', stringToAppend, function (err) {
-          console.log(err);
-        });
-        console.log('file created: ~/Dropbox/notes/log.org');
-      } else if (err) {
-        console.log(err);
-      } else {
-        console.log('logged msg: ', stringToAppend);
-      }
-    });
-  });
+  .action(log);
 
 const urlDestMarkdown = 'C:/Users/ryan.streur/Dropbox/bloggo/content/post/2018/articles-week-of-11-26.md';
 program.command('url <url>')

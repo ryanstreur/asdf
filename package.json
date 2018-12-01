@@ -1,10 +1,10 @@
 {
-  "name": "asdf",
+  "name": "asdf-cli",
   "version": "0.0.0",
   "description": "ergonomic cli",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha *test.js"
   },
   "bin": {
     "asdf": "./index.js"
@@ -18,6 +18,8 @@
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0"
   }
 }
