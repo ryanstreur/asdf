@@ -1,6 +1,6 @@
 const fs = require('fs');
-const config = require('../config');
-const getUserHome = require('../process-util').getUserHome;
+const config = require('../utils/config');
+const getUserHome = require('../utils/process-util').getUserHome;
 const moment = require('moment');
 
 module.exports.log = function log (word, otherWords, cmd) {

@@ -1,5 +1,8 @@
 {
   "log": {
     "filePath": "~/org/log.org"
+  },
+  "url": {
+    "filePath": "~/urls.md"
   }
 }

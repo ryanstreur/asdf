@@ -1,5 +1,5 @@
 const fs = require('fs');
-const defaultConfigFile = require('./.asdf.default.json');
+const defaultConfigFile = require('../.asdf.default.json');
 const getUserHome = require('./process-util').getUserHome;
 
 module.exports = {
